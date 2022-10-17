@@ -1,0 +1,100 @@
+#pragma once
+#include<iostream>
+using namespace std;
+//点类
+class Point {
+public:
+	void setX(int x);//设置点的x坐标
+	int getX();//获取点的x坐标
+	void setY(int y);//设置点的y坐标
+	int getY();//获取点的y坐标
+private:
+	int m_X;//x坐标
+	int m_Y;//y坐标
+};
+
+
+#include "Point.h"
+//设置点的x坐标
+void  Point::setX(int x) {
+	m_X = x;
+}
+//获取点的x坐标
+int Point::getX() {
+	return m_X;
+}
+//设置点的y坐标
+void Point::setY(int y) {
+	m_Y = y;
+}
+//获取点的y坐标
+int Point::getY() {
+	return m_Y;
+}
+
+#pragma once
+#include<iostream>
+using namespace std;
+#include "Point.h"
+//圆类
+class Circle {
+public:
+	void setR(int r);//设置半径
+	int getR();//获取半径
+	void setCenter(Point center);//设置圆心
+	Point getCenter();//获取圆心
+private:
+	int m_R;//半径
+	Point m_Center;//圆心
+};
+
+#include"Circle.h"
+#include"Point.h"
+//设置半径
+void Circle::setR(int r) {
+	m_R = r;
+}
+//获取半径
+int Circle::getR() {
+	return m_R;
+}
+//设置圆心
+void Circle::setCenter(Point center) {
+	m_Center = center;
+}
+//获取圆心
+Point Circle::getCenter() {
+	return m_Center;
+}
+
+#include<iostream>
+using namespace std;
+#include"Circle.h"
+#include"Point.h"
+//判断点到圆心的距离
+void isInCircle(Circle& c, Point& p) {
+	int distance =//点到圆心的距离
+		(c.getCenter().getX() - p.getX()) * (c.getCenter().getX() - p.getX()) +
+		(c.getCenter().getY() - p.getY()) * (c.getCenter().getY() - p.getY());
+	int rdistance = c.getR() * c.getR();//半径的平方
+	if (distance == rdistance) cout << "点在圆上" << endl;//
+	else if(distance > rdistance)  cout << "点在圆外" << endl;
+	else  cout << "点在圆内" << endl;
+}
+int main() {
+	//圆
+	Circle c;
+	c.setR(10);
+	Point center;
+	center.setX(10);
+	center.setY(0);
+	c.setCenter(center);
+	//点
+	Point p;
+	p.setX(10);
+	p.setY(10);
+	isInCircle(c, p);
+	return 0;
+
+}
+
